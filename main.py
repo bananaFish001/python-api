@@ -9,7 +9,6 @@ async def root(): # async is only used when doing tasks that may take time
 @app.get("/posts")
 async def get_post():
     return {"data": "This is your post."}
-
 @app.post("/createposts")
 async def post_data(payload: dict = Body(...)):
     print(payload)
