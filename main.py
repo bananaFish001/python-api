@@ -11,6 +11,5 @@ async def get_post():
     return {"data": "This is your post."}
 
 @app.post("/createposts")
-async def post_data(payload: dict = Body(...)):
-    print(payload)
+async def post_data():
     return {"message": "successfully created a post"}
