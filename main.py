@@ -11,5 +11,6 @@ async def get_post():
     return {"data": "This is your post."}
 
 @app.post("/createposts")
-async def post_data():
+async def post_data(payLoad: dict = Body(...)):
+    print(payLoad)
     return {"message": "successfully created a post"}
