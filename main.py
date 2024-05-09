@@ -11,13 +11,17 @@ class Post(BaseModel): # checks the mentioned values to see if they are followin
     rating: Optional[int] = None
 
 
+my_posts = [{"title": "title of post 1", "content": "some content",  "id": 1}, {
+    "title": "my favourite food", "content": "my favourite food is", "id": 2
+}]
+
 @app.get("/")
 async def root(): # async is only used when doing tasks that may take time
     return {"message": "Welcome to NHK"}
 
 @app.get("/posts")
 async def get_post():
-    return {"data": "This is your post."}
+    return {"data": my_posts}
 
 @app.post("/posts")
 async def post_data(post: Post):
