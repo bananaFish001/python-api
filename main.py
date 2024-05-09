@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.params import Body
 from pydantic import BaseModel
 from typing import Optional
+from random import randrange
 app = FastAPI()
 
 class Post(BaseModel): # checks the mentioned values to see if they are following the datatype
@@ -25,6 +26,7 @@ async def get_post():
 
 @app.post("/posts")
 async def post_data(post: Post):
-    print(post.rating)
-    print(post.dict())
-    return {"data": "post"}
+    post_dict = post.dict()
+    post_dict['id'] = randrange(0, 10000000)
+    my_posts.append(post_dict)
+    return {"data": my_posts}
