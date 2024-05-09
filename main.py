@@ -19,7 +19,7 @@ async def root(): # async is only used when doing tasks that may take time
 async def get_post():
     return {"data": "This is your post."}
 
-@app.post("/createposts")
+@app.post("/posts")
 async def post_data(post: Post):
     print(post.rating)
     print(post.dict())
