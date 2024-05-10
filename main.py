@@ -39,6 +39,13 @@ async def post_data(post: Post):
 
 
 @app.get('/posts/{id}')
-def get_post(id):
+def get_post(id: int):
+
     post = find_post(id)
-    return {"post_detail": f"here is the post {id}"}
+    return {"post_detail": post}
+
+
+@app.get("posts/latest") # /posts is already mentioned earlier and it automatically goes for id instead of latest so it wil return an error
+def get_latest_post():
+    post = my_posts[len(my_posts - 1)]
+    return {"details" : post}
