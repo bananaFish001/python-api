@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response, status, HTTPException
 from fastapi.params import Body
 from pydantic import BaseModel
 from typing import Optional
@@ -30,7 +30,7 @@ async def root(): # async is only used when doing tasks that may take time
 async def get_post():
     return {"data": my_posts}
 
-@app.post("/posts")
+@app.post("/posts", status_code=status.HTTP_201_CREATED)
 async def post_data(post: Post):
     post_dict = post.dict()
     post_dict['id'] = randrange(0, 10000000)
@@ -39,13 +39,11 @@ async def post_data(post: Post):
 
 
 @app.get('/posts/{id}')
-def get_post(id: int):
-
+def get_post(id: int, response: Response):
     post = find_post(id)
+    if not post:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
+                            detail=f"message with id = {id} is not found")
+        #response.status_code = status.HTTP_404_NOT_FOUND
+        #return {'message': f'message with id = {id} is not found'}
     return {"post_detail": post}
-
-
-@app.get("posts/latest") # /posts is already mentioned earlier and it automatically goes for id instead of latest so it wil return an error
-def get_latest_post():
-    post = my_posts[len(my_posts - 1)]
-    return {"details" : post}
