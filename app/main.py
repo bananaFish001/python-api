@@ -30,7 +30,7 @@ def find_index_post(id):
 
 @app.get("/")
 async def root(): # async is only used when doing tasks that may take time
-    return {"message": "Welcome to NHK"}
+    return {"message": "Welcome to Hell"}
 
 @app.get("/posts")
 async def get_post():
