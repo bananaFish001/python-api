@@ -13,7 +13,7 @@ class Post(BaseModel): # checks the mentioned values to see if they are followin
 
 
 my_posts = [{"title": "title of post 1", "content": "some content",  "id": 1}, {
-    "title": "my favourite food", "content": "my favourite food is pizza", "id": 2
+    "title": "my favourite food", "content": "my favourite food is chicken", "id": 2
 }]
 
 
